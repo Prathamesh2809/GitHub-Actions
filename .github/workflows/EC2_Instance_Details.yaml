@@ -13,27 +13,44 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1   # change to your region
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ap-south-1   # change to your region
 
-      - name: Install AWS CLI
+      - name: Updateh Runner mahine
         run: |
           sudo apt-get update
           sudo apt-get install -y awscli
-
-      - name: Get EC2 instance details
-        run: |
-          echo "Fetching EC2 instance details..."
-          aws ec2 describe-instances \
-            --query "Reservations[*].Instances[*].{ID:InstanceId,Type:InstanceType,State:State.Name,AZ:Placement.AvailabilityZone}" \
-            --output table
           
-          # # If we want to retrive detilad with insatce id
-          # aws ec2 describe-instances --instance-ids i-1234567890abcdef
+      - name: Current Directory of Runner Machin
+        run: |
+          echo "Current Working directory Of runner:" 
+          pwd
+          
+      - name: Memory Usage of Runner Machine
+        run: |
+          echo "Memoryy Usage Of runner Machine:" 
+          free -h
+          df -h
+
+      - name: Identity of Runner Machine
+        run: |
+          whoami
+          hostname
+          ip addr show
+
+      # - name: Get EC2 instance details
+      #   run: |
+      #     echo "Fetching EC2 instance details..."
+      #     aws ec2 describe-instances \
+      #       --query "Reservations[*].Instances[*].{ID:InstanceId,Type:InstanceType,State:State.Name,AZ:Placement.AvailabilityZone}" \
+      #       --output table
+          
+      #     # # If we want to retrive detilad with insatce id
+      #     # aws ec2 describe-instances --instance-ids i-1234567890abcdef
 
           # # If we want to retrive detilad with insatce name
           # aws ec2 describe-instances \ --filters "Name=tag:Name,Values=MyServerName"
