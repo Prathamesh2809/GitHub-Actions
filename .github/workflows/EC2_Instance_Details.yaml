@@ -19,11 +19,6 @@ jobs:
       #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #     aws-region: ap-south-1   # change to your region
-
-      - name: Updateh Runner mahine
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y awscli
           
       - name: Current Directory of Runner Machin
         run: |
