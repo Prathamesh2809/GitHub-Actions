@@ -4,6 +4,8 @@ set -e  # exit on error
 LOG_FILE="system_info.log"
 BACKUP_DIR="backup"
 
+exec > "$LOG_FILE" 2>&1
+
 echo "Collecting system info..."
 {
   echo "Date: $(date)"
